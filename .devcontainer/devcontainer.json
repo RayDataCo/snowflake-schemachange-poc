@@ -1,0 +1,43 @@
+{
+    "name": "Snowflake Schemachange POC",
+    // Configure baseline container
+    "image": "mcr.microsoft.com/devcontainers/base:jammy",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {},
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/python:1": {}
+    },
+    // Load environement variables into baseline container
+    // -- ENV vars for local devcontainer development
+    "initializeCommand": "touch .env",
+    "runArgs": [
+        "--env-file",
+        ".env"
+    ],
+    // -- ENV vars for Codespaces development
+    // ---- secret names should match the `.env.sample` file
+    // ---- set Codespaces secrets guide - https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/configuring-dev-containers/specifying-recommended-secrets-for-a-repository
+    "secrets": {
+        "DBT_ENV_SECRET_USER": {},
+        "DBT_ENV_SECRET_PASSWORD": {},
+        "DBT_ENV_ROLE": {},
+        "DBT_ENV_DATABASE": {},
+        "DBT_ENV_WAREHOUSE": {},
+        "DBT_ENV_SCHEMA": {},
+        "SNOWFLAKE_ACCOUNT": {}
+    },
+    // Customize container
+    "postCreateCommand": {
+        "pip_install": "pip3 install -r requirements.txt"
+    },
+    // -- add VS Code extensions and settings
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "eamodio.gitlens",
+                "ms-python.python",
+                "redhat.vscode-yaml"
+            ],
+        }
+    },
+}
