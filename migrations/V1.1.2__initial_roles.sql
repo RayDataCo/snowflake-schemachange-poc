@@ -1,0 +1,3 @@
+USE ROLE USERADMIN;
+
+CREATE ROLE IF NOT EXISTS dbt_transform_role;
