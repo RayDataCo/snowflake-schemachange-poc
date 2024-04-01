@@ -1,1 +1,3 @@
 schemachange
+git+https://github.com/teej/titan.git
+python-dotenv
